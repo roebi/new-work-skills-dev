@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<!--
+  MIT License
+
+  Copyright (c) 2025 roebi (Robert Halter)
+
+  Permission is hereby granted, free of charge, to any person obtaining a copy
+  of this software and associated documentation files (the "Software"), to deal
+  in the Software without restriction, including without limitation the rights
+  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+  copies of the Software, and to permit persons to whom the Software is
+  furnished to do so, subject to the following conditions:
+
+  The above copyright notice and this permission notice shall be included in all
+  copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+  AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+  LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+  SOFTWARE.
+-->
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>new-work-skills — start use Skills</title>
+  <meta name="description" content="Start use Skills — you have it already as howtos. The methodology for new ways of working.">
+  <meta property="og:title" content="new-work-skills">
+  <meta property="og:description" content="Start use Skills — you have it already as howtos.">
+  <meta property="og:url" content="https://new-work-skills.dev">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=JetBrains+Mono:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    /* ─── Reset ─────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+
+    /* ─── Tokens ─────────────────────────────────────────── */
+    :root {
+      --bg:          #09090D;
+      --surface:     #111118;
+      --surface-2:   #18181F;
+      --text:        #EDE8DF;
+      --muted:       #66647A;
+      --border:      #222230;
+      --gold:        #E8C547;
+      --gold-dim:    rgba(232,197,71,.12);
+      --gold-glow:   rgba(232,197,71,.06);
+      --teal:        #4ECDC4;
+      --teal-dim:    rgba(78,205,196,.10);
+      --font-d:      'Syne', sans-serif;
+      --font-m:      'JetBrains Mono', monospace;
+      --r:           3px;
+    }
+
+    /* ─── Base ───────────────────────────────────────────── */
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: var(--font-d);
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    a { color: inherit; text-decoration: none; }
+
+    /* ─── Noise overlay ──────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      pointer-events: none;
+      opacity: .025;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+      background-size: 200px 200px;
+    }
+
+    /* ─── Header ─────────────────────────────────────────── */
+    header {
+      position: fixed;
+      inset: 0 0 auto 0;
+      z-index: 200;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.1rem 2rem;
+      background: rgba(9,9,13,.80);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--border);
+    }
+
+    .wordmark {
+      font-family: var(--font-d);
+      font-size: 1rem;
+      font-weight: 800;
+      letter-spacing: -.03em;
+      color: var(--text);
+    }
+    .wordmark em {
+      font-style: normal;
+      color: var(--gold);
+    }
+
+    .domain-badge {
+      font-family: var(--font-m);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .06em;
+      color: var(--gold);
+      border: 1px solid rgba(232,197,71,.4);
+      padding: .28rem .7rem;
+      border-radius: var(--r);
+      background: var(--gold-dim);
+      white-space: nowrap;
+    }
+
+    /* ─── Hero ───────────────────────────────────────────── */
+    .hero {
+      min-height: 100svh;
+      padding: 9rem 2rem 5rem;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* ambient glow top-right */
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: -150px; right: -150px;
+      width: 550px; height: 550px;
+      background: radial-gradient(ellipse, rgba(232,197,71,.08) 0%, transparent 68%);
+      pointer-events: none;
+    }
+
+    .hero-tag {
+      font-family: var(--font-m);
+      font-size: .7rem;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+    }
+    .hero-tag::before {
+      content: '';
+      display: inline-block;
+      width: 28px; height: 1px;
+      background: var(--muted);
+    }
+
+    .hero-headline {
+      font-family: var(--font-d);
+      font-size: clamp(2.6rem, 6.5vw, 5.2rem);
+      font-weight: 800;
+      line-height: 1.04;
+      letter-spacing: -.04em;
+      max-width: 880px;
+    }
+    .hero-headline .hl { color: var(--gold); }
+    .hero-headline .hl2 { color: var(--teal); }
+
+    .hero-sub {
+      font-family: var(--font-m);
+      font-size: .9rem;
+      color: var(--muted);
+      line-height: 1.75;
+      max-width: 480px;
+      margin-top: 2rem;
+    }
+
+    /* scroll hint */
+    .scroll-hint {
+      margin-top: 3.5rem;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      font-family: var(--font-m);
+      font-size: .65rem;
+      color: var(--muted);
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+    .scroll-arrow {
+      width: 20px; height: 20px;
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: scrollBounce 1.8s ease-in-out infinite;
+    }
+    .scroll-arrow svg { width: 8px; height: 8px; }
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(4px); }
+    }
+
+    /* ─── Divider rule ───────────────────────────────────── */
+    .rule {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 0;
+    }
+
+    /* ─── Word play section ──────────────────────────────── */
+    .wordplay-section {
+      min-height: 80svh;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 5rem 2rem;
+    }
+
+    /* watermark BG text */
+    .wp-bg {
+      position: absolute;
+      font-family: var(--font-d);
+      font-weight: 800;
+      letter-spacing: -.06em;
+      color: rgba(232,197,71,.04);
+      user-select: none;
+      pointer-events: none;
+      line-height: 1;
+    }
+    .wp-bg-new {
+      font-size: clamp(6rem, 22vw, 18rem);
+      top: 5%;
+      left: -3%;
+    }
+    .wp-bg-work {
+      font-size: clamp(6rem, 22vw, 18rem);
+      bottom: 5%;
+      right: -3%;
+    }
+
+    /* grid-line accent */
+    .wordplay-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--border) 1px, transparent 1px),
+        linear-gradient(90deg, var(--border) 1px, transparent 1px);
+      background-size: 60px 60px;
+      opacity: .35;
+      pointer-events: none;
+    }
+
+    .wp-eyebrow {
+      font-family: var(--font-m);
+      font-size: .68rem;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 2.5rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* The animated phrase stage */
+    .phrase-stage {
+      position: relative;
+      z-index: 2;
+      height: clamp(4.5rem, 10vw, 8.5rem);
+      width: 100%;
+      max-width: 780px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .phrase {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-d);
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 800;
+      letter-spacing: -.04em;
+      opacity: 0;
+      transform: translateY(14px) scale(.97);
+      transition: opacity .55s cubic-bezier(.4,0,.2,1),
+                  transform .55s cubic-bezier(.4,0,.2,1);
+      gap: .35em;
+      flex-wrap: wrap;
+      text-align: center;
+      padding: 0 1rem;
+    }
+
+    .phrase.active {
+      opacity: 1;
+      transform: translateY(0) scale(1);
+    }
+
+    .w-gold  { color: var(--gold); }
+    .w-teal  { color: var(--teal); }
+    .w-muted { color: var(--muted); }
+    .w-plain { color: var(--text); }
+
+    /* dot indicator */
+    .wp-dots {
+      display: flex;
+      gap: .55rem;
+      margin-top: 2.8rem;
+      position: relative;
+      z-index: 2;
+    }
+    .wp-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: var(--border);
+      transition: background .35s, transform .35s;
+    }
+    .wp-dot.on {
+      background: var(--gold);
+      transform: scale(1.3);
+    }
+
+    /* progress bar under phrase */
+    .wp-progress {
+      position: relative;
+      z-index: 2;
+      margin-top: 1.8rem;
+      width: 200px;
+      height: 2px;
+      background: var(--border);
+      border-radius: 1px;
+      overflow: hidden;
+    }
+    .wp-bar {
+      height: 100%;
+      width: 0%;
+      background: var(--gold);
+      border-radius: 1px;
+      transition: width 0s linear;
+    }
+
+    /* ─── Marquee band ───────────────────────────────────── */
+    .marquee-band {
+      overflow: hidden;
+      border-top: 1px solid var(--border);
+      border-bottom: 1px solid var(--border);
+      padding: 1.2rem 0;
+      background: var(--surface);
+    }
+    .marquee-track {
+      display: flex;
+      gap: 3rem;
+      width: max-content;
+      animation: marquee 22s linear infinite;
+    }
+    .marquee-band:hover .marquee-track { animation-play-state: paused; }
+    .mi {
+      font-family: var(--font-m);
+      font-size: .65rem;
+      letter-spacing: .25em;
+      text-transform: uppercase;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+    .mi.ac { color: var(--gold); }
+    @keyframes marquee {
+      from { transform: translateX(0); }
+      to   { transform: translateX(-50%); }
+    }
+
+    /* ─── Action section (AIDA → A) ─────────────────────── */
+    .action-section {
+      padding: 7rem 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-label {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      margin-bottom: 3rem;
+      flex-wrap: wrap;
+    }
+    .aida-tag {
+      font-family: var(--font-m);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+      color: var(--gold);
+      background: var(--gold-dim);
+      border: 1px solid rgba(232,197,71,.3);
+      padding: .3rem .75rem;
+      border-radius: var(--r);
+    }
+    .section-title {
+      font-size: clamp(1.4rem, 3vw, 2.2rem);
+      font-weight: 700;
+      letter-spacing: -.03em;
+      color: var(--text);
+    }
+
+    /* prompt cards grid */
+    .prompts-grid {
+      display: grid;
+      gap: 1.25rem;
+      grid-template-columns: repeat(2, 1fr);
+    }
+
+    .prompt-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      padding: 1.75rem 1.75rem 1.5rem;
+      position: relative;
+      overflow: hidden;
+      transition: border-color .22s, box-shadow .22s, transform .22s;
+    }
+
+    /* left accent bar */
+    .prompt-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0;
+      width: 3px; height: 100%;
+      background: linear-gradient(180deg, var(--gold) 0%, var(--teal) 100%);
+      transform: scaleY(0);
+      transform-origin: top;
+      transition: transform .3s cubic-bezier(.4,0,.2,1);
+    }
+    /* subtle glow bg */
+    .prompt-card::after {
+      content: '';
+      position: absolute;
+      top: -40px; right: -40px;
+      width: 140px; height: 140px;
+      background: radial-gradient(circle, var(--gold-glow) 0%, transparent 70%);
+      opacity: 0;
+      transition: opacity .3s;
+      pointer-events: none;
+    }
+
+    .prompt-card:hover {
+      border-color: rgba(232,197,71,.3);
+      box-shadow: 0 4px 28px rgba(0,0,0,.4);
+      transform: translateY(-3px);
+    }
+    .prompt-card:hover::before { transform: scaleY(1); }
+    .prompt-card:hover::after  { opacity: 1; }
+
+    .card-num {
+      font-family: var(--font-m);
+      font-size: .62rem;
+      color: var(--muted);
+      letter-spacing: .12em;
+      margin-bottom: 1rem;
+    }
+
+    .card-prompt-text {
+      font-family: var(--font-m);
+      font-size: .92rem;
+      font-weight: 600;
+      line-height: 1.55;
+      color: var(--text);
+      margin-bottom: .6rem;
+      /* styled like a code/prompt string */
+      quotes: none;
+    }
+    /* open-quote decoration */
+    .card-prompt-text::before {
+      content: '"';
+      color: var(--gold);
+      font-size: 1.3rem;
+      line-height: 0;
+      vertical-align: -.18em;
+      margin-right: .15em;
+      font-family: Georgia, serif;
+    }
+
+    .card-ref {
+      font-family: var(--font-m);
+      font-size: .65rem;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: .4rem;
+      flex-wrap: wrap;
+    }
+    .card-ref a {
+      color: var(--muted);
+      transition: color .2s;
+      word-break: break-all;
+    }
+    .card-ref a:hover { color: var(--teal); }
+
+    .card-actions {
+      display: flex;
+      gap: .65rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-prompt {
+      display: inline-flex;
+      align-items: center;
+      gap: .35rem;
+      font-family: var(--font-m);
+      font-size: .68rem;
+      font-weight: 700;
+      letter-spacing: .04em;
+      padding: .42rem .85rem;
+      border-radius: var(--r);
+      border: 1px solid transparent;
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s, transform .15s;
+      text-decoration: none;
+    }
+    .btn-prompt:active { transform: scale(.96); }
+
+    .btn-web {
+      background: var(--gold-dim);
+      color: var(--gold);
+      border-color: rgba(232,197,71,.3);
+    }
+    .btn-web:hover {
+      background: var(--gold);
+      color: var(--bg);
+      border-color: var(--gold);
+    }
+
+    .btn-app {
+      background: var(--teal-dim);
+      color: var(--teal);
+      border-color: rgba(78,205,196,.3);
+    }
+    .btn-app:hover {
+      background: var(--teal);
+      color: var(--bg);
+      border-color: var(--teal);
+    }
+
+    /* ─── Footer ─────────────────────────────────────────── */
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 2rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1rem;
+      background: var(--surface);
+    }
+    .ft {
+      font-family: var(--font-m);
+      font-size: .68rem;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+      flex-wrap: wrap;
+    }
+    .ft a { color: var(--muted); transition: color .2s; }
+    .ft a:hover { color: var(--gold); }
+    .ft-sep { opacity: .35; }
+
+    /* ─── Responsive ─────────────────────────────────────── */
+
+    /* Mobile portrait: < 640px */
+    @media (max-width: 639px) {
+      header { padding: .9rem 1.1rem; }
+      .wordmark { font-size: .88rem; }
+      .domain-badge { font-size: .65rem; padding: .22rem .55rem; }
+
+      .hero { padding: 7.5rem 1.2rem 4rem; }
+      .hero-headline { font-size: clamp(2rem, 9vw, 3rem); }
+
+      .wordplay-section { padding: 4rem 1.2rem; }
+      .phrase { font-size: clamp(1.8rem, 8.5vw, 2.8rem); gap: .25em; }
+      .phrase-stage { height: clamp(3.5rem, 14vw, 6rem); }
+      .wp-bg-new  { font-size: clamp(4rem, 28vw, 10rem); }
+      .wp-bg-work { font-size: clamp(4rem, 28vw, 10rem); }
+
+      .action-section { padding: 4rem 1.2rem; }
+      .prompts-grid { grid-template-columns: 1fr; }
+
+      footer { padding: 1.5rem 1.2rem; flex-direction: column; align-items: flex-start; }
+    }
+
+    /* Tablet landscape: 640px – 1099px */
+    @media (min-width: 640px) and (max-width: 1099px) {
+      .hero { padding: 8.5rem 2.5rem 5rem; }
+      .prompts-grid { grid-template-columns: repeat(2, 1fr); }
+      .action-section { padding: 5rem 2.5rem; }
+    }
+
+    /* Desktop landscape: ≥ 1100px */
+    @media (min-width: 1100px) {
+      header { padding: 1.1rem 3rem; }
+      .hero { padding: 11rem 4rem 6rem; }
+      .action-section { padding: 8rem 4rem; }
+      footer { padding: 2rem 4rem; }
+      .prompts-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── Header ──────────────────────────────────────────── -->
+<header>
+  <span class="wordmark"><em>new</em>-work-skills</span>
+  <span class="domain-badge">new-work-skills.dev</span>
+</header>
+
+<!-- ─── Hero ────────────────────────────────────────────── -->
+<section class="hero">
+  <p class="hero-tag">getting started</p>
+  <h1 class="hero-headline">
+    start use <span class="hl">Skills</span> —<br>
+    you have it already<br>
+    as <span class="hl2">howtos</span>
+  </h1>
+  <p class="hero-sub">
+    Transform what you know into reusable, shareable Skills.<br>
+    The methodology for new ways of working.
+  </p>
+  <div class="scroll-hint" aria-hidden="true">
+    <div class="scroll-arrow">
+      <svg viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.8">
+        <polyline points="2,3 5,7 8,3"/>
+      </svg>
+    </div>
+    scroll to explore
+  </div>
+</section>
+
+<hr class="rule">
+
+<!-- ─── Word play ────────────────────────────────────────── -->
+<section class="wordplay-section" aria-label="new work — the loop">
+
+  <div class="wp-bg wp-bg-new" aria-hidden="true">NEW</div>
+  <div class="wp-bg wp-bg-work" aria-hidden="true">WORK</div>
+
+  <p class="wp-eyebrow">new work · the loop</p>
+
+  <div class="phrase-stage" id="phraseStage" aria-live="polite" aria-atomic="true">
+    <!-- phrase 0 -->
+    <div class="phrase active" id="p0" aria-label="how to Skill">
+      <span class="w-muted">how to</span>
+      <span class="w-gold">Skill</span>
+    </div>
+    <!-- phrase 1 -->
+    <div class="phrase" id="p1" aria-label="Skill Howto">
+      <span class="w-gold">Skill</span>
+      <span class="w-teal">Howto</span>
+    </div>
+    <!-- phrase 2 -->
+    <div class="phrase" id="p2" aria-label="Howto as Skill">
+      <span class="w-teal">Howto</span>
+      <span class="w-muted">as</span>
+      <span class="w-gold">Skill</span>
+    </div>
+  </div>
+
+  <div class="wp-progress" role="progressbar" aria-label="phrase timer">
+    <div class="wp-bar" id="wpBar"></div>
+  </div>
+
+  <div class="wp-dots" aria-hidden="true">
+    <div class="wp-dot on"  id="d0"></div>
+    <div class="wp-dot"     id="d1"></div>
+    <div class="wp-dot"     id="d2"></div>
+  </div>
+
+</section>
+
+<!-- ─── Marquee band ─────────────────────────────────────── -->
+<div class="marquee-band" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span class="mi ac">NEW WORK</span><span class="mi">·</span>
+    <span class="mi">SKILLS</span><span class="mi">·</span>
+    <span class="mi ac">HOWTO</span><span class="mi">·</span>
+    <span class="mi">LEARN BY DOING</span><span class="mi">·</span>
+    <span class="mi ac">AGENT SKILLS</span><span class="mi">·</span>
+    <span class="mi">AIDER SKILLS</span><span class="mi">·</span>
+    <span class="mi ac">NEW WORK</span><span class="mi">·</span>
+    <span class="mi">SKILLS</span><span class="mi">·</span>
+    <span class="mi ac">HOWTO</span><span class="mi">·</span>
+    <span class="mi">LEARN BY DOING</span><span class="mi">·</span>
+    <span class="mi ac">AGENT SKILLS</span><span class="mi">·</span>
+    <span class="mi">AIDER SKILLS</span><span class="mi">·</span>
+    <!-- duplicate for seamless loop -->
+    <span class="mi ac">NEW WORK</span><span class="mi">·</span>
+    <span class="mi">SKILLS</span><span class="mi">·</span>
+    <span class="mi ac">HOWTO</span><span class="mi">·</span>
+    <span class="mi">LEARN BY DOING</span><span class="mi">·</span>
+    <span class="mi ac">AGENT SKILLS</span><span class="mi">·</span>
+    <span class="mi">AIDER SKILLS</span><span class="mi">·</span>
+    <span class="mi ac">NEW WORK</span><span class="mi">·</span>
+    <span class="mi">SKILLS</span><span class="mi">·</span>
+    <span class="mi ac">HOWTO</span><span class="mi">·</span>
+    <span class="mi">LEARN BY DOING</span><span class="mi">·</span>
+    <span class="mi ac">AGENT SKILLS</span><span class="mi">·</span>
+    <span class="mi">AIDER SKILLS</span><span class="mi">·</span>
+  </div>
+</div>
+
+<hr class="rule">
+
+<!-- ─── Action section (AIDA → A = Action) ──────────────── -->
+<section class="action-section">
+
+  <div class="section-label">
+    <span class="aida-tag">A — Action</span>
+    <h2 class="section-title">Learn &amp; understand by doing — your personal progress tracked 🎓</h2>
+  </div>
+
+  <!-- teacher-skill ref used in all prompt links -->
+  <!-- https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md -->
+
+  <div class="prompts-grid">
+
+    <!-- Card 01 -->
+    <div class="prompt-card">
+      <p class="card-num">01 · agentskills.io</p>
+      <p class="card-prompt-text">Teach me about the agentskills.io skill specification</p>
+      <p class="card-ref">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
+        <a href="https://agentskills.io" target="_blank" rel="noopener">agentskills.io</a>
+        <span class="ft-sep">·</span>
+        <a href="https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+      </p>
+      <div class="card-actions">
+        <a class="btn-prompt btn-web"
+           href="https://claude.ai/new?q=Teach+me+about+the+agentskills.io+skill+specification+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fagentskills.io"
+           target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
+          Web
+        </a>
+        <a class="btn-prompt btn-app"
+           href="claude://new?q=Teach+me+about+the+agentskills.io+skill+specification+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fagentskills.io">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
+          App
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 02 -->
+    <div class="prompt-card">
+      <p class="card-num">02 · new-work-skills</p>
+      <p class="card-prompt-text">Teach me about new-work-skills</p>
+      <p class="card-ref">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
+        <a href="https://github.com/roebi/new-work-skills" target="_blank" rel="noopener">github.com/roebi/new-work-skills</a>
+        <span class="ft-sep">·</span>
+        <a href="https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+      </p>
+      <div class="card-actions">
+        <a class="btn-prompt btn-web"
+           href="https://claude.ai/new?q=Teach+me+about+new-work-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fnew-work-skills"
+           target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
+          Web
+        </a>
+        <a class="btn-prompt btn-app"
+           href="claude://new?q=Teach+me+about+new-work-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fnew-work-skills">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
+          App
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 03 -->
+    <div class="prompt-card">
+      <p class="card-num">03 · aider-skills</p>
+      <p class="card-prompt-text">Teach me about aider-skills</p>
+      <p class="card-ref">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
+        <a href="https://github.com/roebi/aider-skills" target="_blank" rel="noopener">github.com/roebi/aider-skills</a>
+        <span class="ft-sep">·</span>
+        <a href="https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+      </p>
+      <div class="card-actions">
+        <a class="btn-prompt btn-web"
+           href="https://claude.ai/new?q=Teach+me+about+aider-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Faider-skills"
+           target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
+          Web
+        </a>
+        <a class="btn-prompt btn-app"
+           href="claude://new?q=Teach+me+about+aider-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Faider-skills">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
+          App
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 04 -->
+    <div class="prompt-card">
+      <p class="card-num">04 · agent-skills</p>
+      <p class="card-prompt-text">Teach me about roebi agent-skills</p>
+      <p class="card-ref">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
+        <a href="https://github.com/roebi/agent-skills" target="_blank" rel="noopener">github.com/roebi/agent-skills</a>
+        <span class="ft-sep">·</span>
+        <a href="https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+      </p>
+      <div class="card-actions">
+        <a class="btn-prompt btn-web"
+           href="https://claude.ai/new?q=Teach+me+about+roebi+agent-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills"
+           target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
+          Web
+        </a>
+        <a class="btn-prompt btn-app"
+           href="claude://new?q=Teach+me+about+roebi+agent-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
+          App
+        </a>
+      </div>
+    </div>
+
+  </div><!-- /prompts-grid -->
+</section>
+
+<!-- ─── Footer ───────────────────────────────────────────── -->
+<footer>
+  <p class="ft">
+    MIT License
+    <span class="ft-sep">·</span>
+    © 2025
+    <a href="https://github.com/roebi" target="_blank" rel="noopener">roebi</a>
+    (Robert Halter)
+  </p>
+  <p class="ft">
+    <a href="https://new-work-skills.dev">new-work-skills.dev</a>
+    <span class="ft-sep">·</span>
+    <a href="https://new-work-skills.ch">new-work-skills.ch</a>
+    <span class="ft-sep">·</span>
+    <a href="https://github.com/roebi/new-work-skills-dev" target="_blank" rel="noopener">github.com/roebi/new-work-skills-dev</a>
+  </p>
+</footer>
+
+<!-- ─── Scripts ──────────────────────────────────────────── -->
+<script>
+  /* ── Word play loop ──────────────────────────────────── */
+  (function() {
+    const phrases  = [document.getElementById('p0'), document.getElementById('p1'), document.getElementById('p2')];
+    const dots     = [document.getElementById('d0'), document.getElementById('d1'), document.getElementById('d2')];
+    const bar      = document.getElementById('wpBar');
+    const DURATION = 2800; // ms each phrase is shown
+    let current    = 0;
+    let startTime  = null;
+    let rafId      = null;
+    let paused     = false;
+
+    // Activate first
+    phrases[0].classList.add('active');
+    dots[0].classList.add('on');
+
+    function animate(ts) {
+      if (paused) { rafId = requestAnimationFrame(animate); return; }
+      if (!startTime) startTime = ts;
+      const elapsed = ts - startTime;
+      const pct = Math.min((elapsed / DURATION) * 100, 100);
+      bar.style.transition = 'none';
+      bar.style.width = pct + '%';
+
+      if (elapsed >= DURATION) {
+        // advance
+        phrases[current].classList.remove('active');
+        dots[current].classList.remove('on');
+        current = (current + 1) % phrases.length;
+        phrases[current].classList.add('active');
+        dots[current].classList.add('on');
+        bar.style.width = '0%';
+        startTime = ts;
+      }
+      rafId = requestAnimationFrame(animate);
+    }
+
+    rafId = requestAnimationFrame(animate);
+
+    // Pause on hover (accessibility & usability)
+    const stage = document.getElementById('phraseStage');
+    stage.addEventListener('mouseenter', () => { paused = true; });
+    stage.addEventListener('mouseleave', () => { paused = false; startTime = null; bar.style.width = '0%'; });
+    stage.addEventListener('focusin',    () => { paused = true; });
+    stage.addEventListener('focusout',   () => { paused = false; startTime = null; });
+
+    // Click / tap to advance manually
+    stage.style.cursor = 'pointer';
+    stage.addEventListener('click', () => {
+      if (paused) return;
+      phrases[current].classList.remove('active');
+      dots[current].classList.remove('on');
+      current = (current + 1) % phrases.length;
+      phrases[current].classList.add('active');
+      dots[current].classList.add('on');
+      bar.style.width = '0%';
+      startTime = null;
+    });
+  })();
+
+  /* ── Reduced-motion: stop loop animation ─────────────── */
+  if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    document.querySelector('.marquee-track').style.animation = 'none';
+    // Keep phrase static (first one already visible)
+  }
+</script>
+</body>
+</html>
