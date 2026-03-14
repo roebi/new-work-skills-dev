@@ -26,10 +26,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>new-work-skills — start use Skills</title>
-  <meta name="description" content="Start use Skills — you have it already as howtos. The methodology for new ways of working.">
+  <title>new-work-skills.dev | start use Skills</title>
+  <meta name="description" content="Start use Skills - you have it already as howtos. The methodology for new ways of working.">
   <meta property="og:title" content="new-work-skills">
-  <meta property="og:description" content="Start use Skills — you have it already as howtos.">
+  <meta property="og:description" content="Start use Skills - you have it already as howtos.">
   <meta property="og:url" content="https://new-work-skills.dev">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -102,7 +102,10 @@
       font-weight: 800;
       letter-spacing: -.03em;
       color: var(--text);
+      cursor: pointer;
+      transition: opacity .2s;
     }
+    .wordmark:hover { opacity: .75; }
     .wordmark em {
       font-style: normal;
       color: var(--gold);
@@ -119,6 +122,12 @@
       border-radius: var(--r);
       background: var(--gold-dim);
       white-space: nowrap;
+      cursor: pointer;
+      transition: background .2s, color .2s;
+    }
+    .domain-badge:hover {
+      background: var(--gold);
+      color: var(--bg);
     }
 
     /* ─── Hero ───────────────────────────────────────────── */
@@ -621,8 +630,8 @@
 
 <!-- ─── Header ──────────────────────────────────────────── -->
 <header>
-  <span class="wordmark"><em>new</em>-work-skills</span>
-  <span class="domain-badge">new-work-skills.dev</span>
+  <a href="https://new-work-skills.dev" class="wordmark"><em>new</em>-work-skills</a>
+  <a href="https://new-work-skills.dev" class="domain-badge">new-work-skills.dev</a>
 </header>
 
 <!-- ─── Hero ────────────────────────────────────────────── -->
@@ -842,7 +851,7 @@
   <p class="ft">
     MIT License
     <span class="ft-sep">·</span>
-    © 2025
+    © 2026
     <a href="https://github.com/roebi" target="_blank" rel="noopener">roebi</a>
     (Robert Halter)
   </p>
@@ -851,7 +860,7 @@
     <span class="ft-sep">·</span>
     <a href="https://new-work-skills.ch">new-work-skills.ch</a>
     <span class="ft-sep">·</span>
-    <a href="https://github.com/roebi/new-work-skills-dev" target="_blank" rel="noopener">github.com/roebi/new-work-skills-dev</a>
+    <a href="https://github.com/roebi/new-work-skills" target="_blank" rel="noopener">github.com/roebi/new-work-skills</a>
   </p>
 </footer>
 
