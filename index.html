@@ -423,6 +423,98 @@
       color: var(--text);
     }
 
+    /* ─── Transparency block ─────────────────────────────── */
+    .how-it-works {
+      margin-bottom: 2.5rem;
+      border: 1px solid var(--border);
+      border-radius: var(--r);
+      background: var(--surface);
+      overflow: hidden;
+    }
+
+    .how-it-works summary {
+      font-family: var(--font-m);
+      font-size: .72rem;
+      font-weight: 700;
+      letter-spacing: .08em;
+      color: var(--muted);
+      padding: .9rem 1.25rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: .6rem;
+      list-style: none;
+      transition: color .2s, background .2s;
+      user-select: none;
+    }
+    .how-it-works summary::-webkit-details-marker { display: none; }
+    .how-it-works summary::before {
+      content: '▶';
+      font-size: .55rem;
+      color: var(--muted);
+      transition: transform .25s, color .2s;
+      display: inline-block;
+    }
+    .how-it-works[open] summary::before {
+      transform: rotate(90deg);
+      color: var(--teal);
+    }
+    .how-it-works[open] summary {
+      color: var(--text);
+      border-bottom: 1px solid var(--border);
+    }
+    .how-it-works summary:hover {
+      color: var(--text);
+      background: var(--surface-2);
+    }
+
+    .how-it-works-body {
+      padding: 1.25rem 1.5rem 1.4rem;
+      display: flex;
+      flex-direction: column;
+      gap: .9rem;
+    }
+
+    .hiw-row {
+      font-family: var(--font-m);
+      font-size: .72rem;
+      line-height: 1.7;
+      color: var(--muted);
+      display: flex;
+      gap: .75rem;
+      align-items: flex-start;
+    }
+    .hiw-step {
+      font-weight: 700;
+      color: var(--teal);
+      min-width: 1.4rem;
+      flex-shrink: 0;
+    }
+    .hiw-row a {
+      color: var(--teal);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: opacity .2s;
+    }
+    .hiw-row a:hover { opacity: .75; }
+
+    .hiw-note {
+      font-family: var(--font-m);
+      font-size: .68rem;
+      color: var(--border);
+      border-top: 1px solid var(--border);
+      padding-top: .85rem;
+      margin-top: .1rem;
+      line-height: 1.6;
+    }
+    .hiw-note a {
+      color: var(--muted);
+      text-decoration: underline;
+      text-underline-offset: 2px;
+      transition: color .2s;
+    }
+    .hiw-note a:hover { color: var(--gold); }
+
     /* prompt cards grid */
     .prompts-grid {
       display: grid;
@@ -471,7 +563,7 @@
     .prompt-card:hover::before { transform: scaleY(1); }
     .prompt-card:hover::after  { opacity: 1; }
 
-    /* card 05 — meta card — teal accent */
+    /* card 01 — meta card — teal accent */
     .prompt-card.meta-card::before {
       background: linear-gradient(180deg, var(--teal) 0%, var(--gold) 100%);
     }
@@ -674,17 +766,14 @@
   <p class="wp-eyebrow">new work · the loop</p>
 
   <div class="phrase-stage" id="phraseStage" aria-live="polite" aria-atomic="true">
-    <!-- phrase 0 -->
     <div class="phrase active" id="p0" aria-label="how to Skill">
       <span class="w-muted">how to</span>
       <span class="w-gold">Skill</span>
     </div>
-    <!-- phrase 1 -->
     <div class="phrase" id="p1" aria-label="Skill Howto">
       <span class="w-gold">Skill</span>
       <span class="w-teal">Howto</span>
     </div>
-    <!-- phrase 2 -->
     <div class="phrase" id="p2" aria-label="Howto as Skill">
       <span class="w-teal">Howto</span>
       <span class="w-muted">as</span>
@@ -745,6 +834,42 @@
     <h2 class="section-title">Learn &amp; understand by doing — your personal progress tracked 🎓</h2>
   </div>
 
+  <!-- ─── Transparency block ───────────────────────────── -->
+  <details class="how-it-works">
+    <summary>ℹ️ How this works — what happens when you click Web or App</summary>
+    <div class="how-it-works-body">
+      <div class="hiw-row">
+        <span class="hiw-step">1.</span>
+        <span>Clicking <strong>Web</strong> opens <a href="https://claude.ai" target="_blank" rel="noopener">claude.ai</a> in your browser.
+        Clicking <strong>App</strong> opens the Claude desktop or mobile app.
+        Both require a free Claude account.</span>
+      </div>
+      <div class="hiw-row">
+        <span class="hiw-step">2.</span>
+        <span>The prompt tells Claude to <strong>fetch the teaching skill</strong> from this page first:
+        <a href="/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener">SKILL.md</a> —
+        you can read it before clicking. It is a plain text file hosted here.</span>
+      </div>
+      <div class="hiw-row">
+        <span class="hiw-step">3.</span>
+        <span>Once the skill is loaded, Claude acts as a <strong>Teacher</strong> and guides you through
+        a 5-level learning plan for the chosen topic, tracking your progress in a Markdown file.</span>
+      </div>
+      <div class="hiw-row">
+        <span class="hiw-step">4.</span>
+        <span>A <strong>Skill</strong> is a plain Markdown instruction file that tells an AI agent
+        what to do and when. Learn more at
+        <a href="https://agentskills.io/specification" target="_blank" rel="noopener">agentskills.io/specification</a>.</span>
+      </div>
+      <p class="hiw-note">
+        🛡️ Claude will show a safety notice before running any pre-filled prompt —
+        that is expected and good practice. You can inspect every linked skill file and every URL
+        on this page before clicking. No data is sent to this website when you use the buttons.
+        See <a href="/datenschutz.md" target="_blank" rel="noopener">Datenschutz</a> for details.
+      </p>
+    </div>
+  </details>
+
   <!-- teacher-skill hosted at:
        https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md
        source: https://github.com/roebi/agent-skills/tree/main/skills/learn-topic-having-teacher-track-learning-progress
@@ -752,15 +877,40 @@
 
   <div class="prompts-grid">
 
-    <!-- Card 01 -->
+    <!-- Card 01 — meta: learn about the learning skill itself (entry point) -->
+    <div class="prompt-card meta-card">
+      <p class="card-num">01 · teacher skill — start here</p>
+      <p class="card-prompt-text">Teach me about the learn-topic-having-teacher-track-learning-progress skill itself</p>
+      <p class="card-ref">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
+        <a href="/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener">SKILL.md</a>
+        <span class="ft-sep">·</span>
+        <a href="/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+      </p>
+      <div class="card-actions">
+        <a class="btn-prompt btn-web"
+           href="https://claude.ai/new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+this+learn-topic-having-teacher-track-learning-progress+skill+itself+%E2%80%94+see+also+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md"
+           target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
+          Web
+        </a>
+        <a class="btn-prompt btn-app"
+           href="claude://new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+this+learn-topic-having-teacher-track-learning-progress+skill+itself+%E2%80%94+see+also+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
+          App
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 02 -->
     <div class="prompt-card">
-      <p class="card-num">01 · agentskills.io</p>
+      <p class="card-num">02 · agentskills.io</p>
       <p class="card-prompt-text">Teach me about the agentskills.io skill specification</p>
       <p class="card-ref">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
         <a href="https://agentskills.io" target="_blank" rel="noopener">agentskills.io</a>
         <span class="ft-sep">·</span>
-        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+        <a href="/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
       </p>
       <div class="card-actions">
         <a class="btn-prompt btn-web"
@@ -777,15 +927,15 @@
       </div>
     </div>
 
-    <!-- Card 02 -->
+    <!-- Card 03 -->
     <div class="prompt-card">
-      <p class="card-num">02 · new-work-skills</p>
+      <p class="card-num">03 · new-work-skills</p>
       <p class="card-prompt-text">Teach me about new-work-skills</p>
       <p class="card-ref">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
         <a href="https://github.com/roebi/new-work-skills" target="_blank" rel="noopener">github.com/roebi/new-work-skills</a>
         <span class="ft-sep">·</span>
-        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+        <a href="/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
       </p>
       <div class="card-actions">
         <a class="btn-prompt btn-web"
@@ -802,15 +952,15 @@
       </div>
     </div>
 
-    <!-- Card 03 -->
+    <!-- Card 04 -->
     <div class="prompt-card">
-      <p class="card-num">03 · aider-skills</p>
+      <p class="card-num">04 · aider-skills</p>
       <p class="card-prompt-text">Teach me about aider-skills</p>
       <p class="card-ref">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
         <a href="https://github.com/roebi/aider-skills" target="_blank" rel="noopener">github.com/roebi/aider-skills</a>
         <span class="ft-sep">·</span>
-        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+        <a href="/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
       </p>
       <div class="card-actions">
         <a class="btn-prompt btn-web"
@@ -827,15 +977,15 @@
       </div>
     </div>
 
-    <!-- Card 04 -->
+    <!-- Card 05 -->
     <div class="prompt-card">
-      <p class="card-num">04 · agent-skills</p>
+      <p class="card-num">05 · agent-skills</p>
       <p class="card-prompt-text">Teach me about roebi agent-skills</p>
       <p class="card-ref">
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
         <a href="https://github.com/roebi/agent-skills" target="_blank" rel="noopener">github.com/roebi/agent-skills</a>
         <span class="ft-sep">·</span>
-        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+        <a href="/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
       </p>
       <div class="card-actions">
         <a class="btn-prompt btn-web"
@@ -846,31 +996,6 @@
         </a>
         <a class="btn-prompt btn-app"
            href="claude://new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+roebi+agent-skills+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills">
-          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
-          App
-        </a>
-      </div>
-    </div>
-
-    <!-- Card 05 — meta: learn about the learning skill itself -->
-    <div class="prompt-card meta-card">
-      <p class="card-num">05 · teacher skill</p>
-      <p class="card-prompt-text">Teach me about the learn-topic-having-teacher-track-learning-progress skill itself</p>
-      <p class="card-ref">
-        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
-        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener">SKILL.md</a>
-        <span class="ft-sep">·</span>
-        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
-      </p>
-      <div class="card-actions">
-        <a class="btn-prompt btn-web"
-           href="https://claude.ai/new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+this+learn-topic-having-teacher-track-learning-progress+skill+itself+%E2%80%94+see+also+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md"
-           target="_blank" rel="noopener">
-          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
-          Web
-        </a>
-        <a class="btn-prompt btn-app"
-           href="claude://new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+this+learn-topic-having-teacher-track-learning-progress+skill+itself+%E2%80%94+see+also+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
           App
         </a>
@@ -909,13 +1034,12 @@
     const phrases  = [document.getElementById('p0'), document.getElementById('p1'), document.getElementById('p2')];
     const dots     = [document.getElementById('d0'), document.getElementById('d1'), document.getElementById('d2')];
     const bar      = document.getElementById('wpBar');
-    const DURATION = 2800; // ms each phrase is shown
+    const DURATION = 2800;
     let current    = 0;
     let startTime  = null;
     let rafId      = null;
     let paused     = false;
 
-    // Activate first
     phrases[0].classList.add('active');
     dots[0].classList.add('on');
 
@@ -928,7 +1052,6 @@
       bar.style.width = pct + '%';
 
       if (elapsed >= DURATION) {
-        // advance
         phrases[current].classList.remove('active');
         dots[current].classList.remove('on');
         current = (current + 1) % phrases.length;
@@ -942,14 +1065,12 @@
 
     rafId = requestAnimationFrame(animate);
 
-    // Pause on hover (accessibility & usability)
     const stage = document.getElementById('phraseStage');
     stage.addEventListener('mouseenter', () => { paused = true; });
     stage.addEventListener('mouseleave', () => { paused = false; startTime = null; bar.style.width = '0%'; });
     stage.addEventListener('focusin',    () => { paused = true; });
     stage.addEventListener('focusout',   () => { paused = false; startTime = null; });
 
-    // Click / tap to advance manually
     stage.style.cursor = 'pointer';
     stage.addEventListener('click', () => {
       if (paused) return;
@@ -963,10 +1084,9 @@
     });
   })();
 
-  /* ── Reduced-motion: stop loop animation ─────────────── */
+  /* ── Reduced-motion ──────────────────────────────────── */
   if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
     document.querySelector('.marquee-track').style.animation = 'none';
-    // Keep phrase static (first one already visible)
   }
 </script>
 </body>
