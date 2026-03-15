@@ -471,6 +471,14 @@
     .prompt-card:hover::before { transform: scaleY(1); }
     .prompt-card:hover::after  { opacity: 1; }
 
+    /* card 05 — meta card — teal accent */
+    .prompt-card.meta-card::before {
+      background: linear-gradient(180deg, var(--teal) 0%, var(--gold) 100%);
+    }
+    .prompt-card.meta-card:hover {
+      border-color: rgba(78,205,196,.3);
+    }
+
     .card-num {
       font-family: var(--font-m);
       font-size: .62rem;
@@ -486,7 +494,6 @@
       line-height: 1.55;
       color: var(--text);
       margin-bottom: .6rem;
-      /* styled like a code/prompt string */
       quotes: none;
     }
     /* open-quote decoration */
@@ -738,8 +745,10 @@
     <h2 class="section-title">Learn &amp; understand by doing — your personal progress tracked 🎓</h2>
   </div>
 
-  <!-- teacher-skill ref used in all prompt links -->
-  <!-- https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md -->
+  <!-- teacher-skill hosted at:
+       https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md
+       source: https://github.com/roebi/agent-skills/tree/main/skills/learn-topic-having-teacher-track-learning-progress
+  -->
 
   <div class="prompts-grid">
 
@@ -751,17 +760,17 @@
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
         <a href="https://agentskills.io" target="_blank" rel="noopener">agentskills.io</a>
         <span class="ft-sep">·</span>
-        <a href="https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
       </p>
       <div class="card-actions">
         <a class="btn-prompt btn-web"
-           href="https://claude.ai/new?q=Teach+me+about+the+agentskills.io+skill+specification+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fagentskills.io"
+           href="https://claude.ai/new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+the+agentskills.io+skill+specification+%E2%80%94+see+also+https%3A%2F%2Fagentskills.io"
            target="_blank" rel="noopener">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
           Web
         </a>
         <a class="btn-prompt btn-app"
-           href="claude://new?q=Teach+me+about+the+agentskills.io+skill+specification+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fagentskills.io">
+           href="claude://new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+the+agentskills.io+skill+specification+%E2%80%94+see+also+https%3A%2F%2Fagentskills.io">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
           App
         </a>
@@ -776,17 +785,17 @@
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
         <a href="https://github.com/roebi/new-work-skills" target="_blank" rel="noopener">github.com/roebi/new-work-skills</a>
         <span class="ft-sep">·</span>
-        <a href="https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
       </p>
       <div class="card-actions">
         <a class="btn-prompt btn-web"
-           href="https://claude.ai/new?q=Teach+me+about+new-work-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fnew-work-skills"
+           href="https://claude.ai/new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+new-work-skills+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fnew-work-skills"
            target="_blank" rel="noopener">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
           Web
         </a>
         <a class="btn-prompt btn-app"
-           href="claude://new?q=Teach+me+about+new-work-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fnew-work-skills">
+           href="claude://new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+new-work-skills+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fnew-work-skills">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
           App
         </a>
@@ -801,17 +810,17 @@
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
         <a href="https://github.com/roebi/aider-skills" target="_blank" rel="noopener">github.com/roebi/aider-skills</a>
         <span class="ft-sep">·</span>
-        <a href="https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
       </p>
       <div class="card-actions">
         <a class="btn-prompt btn-web"
-           href="https://claude.ai/new?q=Teach+me+about+aider-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Faider-skills"
+           href="https://claude.ai/new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+aider-skills+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Faider-skills"
            target="_blank" rel="noopener">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
           Web
         </a>
         <a class="btn-prompt btn-app"
-           href="claude://new?q=Teach+me+about+aider-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Faider-skills">
+           href="claude://new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+aider-skills+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Faider-skills">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
           App
         </a>
@@ -826,17 +835,42 @@
         <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
         <a href="https://github.com/roebi/agent-skills" target="_blank" rel="noopener">github.com/roebi/agent-skills</a>
         <span class="ft-sep">·</span>
-        <a href="https://github.com/roebi/agent-skills/blob/main/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
       </p>
       <div class="card-actions">
         <a class="btn-prompt btn-web"
-           href="https://claude.ai/new?q=Teach+me+about+roebi+agent-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills"
+           href="https://claude.ai/new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+roebi+agent-skills+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills"
            target="_blank" rel="noopener">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
           Web
         </a>
         <a class="btn-prompt btn-app"
-           href="claude://new?q=Teach+me+about+roebi+agent-skills+using+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills%2Fblob%2Fmain%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills">
+           href="claude://new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+roebi+agent-skills+%E2%80%94+see+also+https%3A%2F%2Fgithub.com%2Froebi%2Fagent-skills">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
+          App
+        </a>
+      </div>
+    </div>
+
+    <!-- Card 05 — meta: learn about the learning skill itself -->
+    <div class="prompt-card meta-card">
+      <p class="card-num">05 · teacher skill</p>
+      <p class="card-prompt-text">Teach me about the learn-topic-having-teacher-track-learning-progress skill itself</p>
+      <p class="card-ref">
+        <svg width="10" height="10" viewBox="0 0 10 10" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M2 5h6M5 2l3 3-3 3"/></svg>
+        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener">SKILL.md</a>
+        <span class="ft-sep">·</span>
+        <a href="https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md" target="_blank" rel="noopener" title="uses learn-topic-having-teacher-track-learning-progress skill">🎓 teacher skill</a>
+      </p>
+      <div class="card-actions">
+        <a class="btn-prompt btn-web"
+           href="https://claude.ai/new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+this+learn-topic-having-teacher-track-learning-progress+skill+itself+%E2%80%94+see+also+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md"
+           target="_blank" rel="noopener">
+          <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="5.5" cy="5.5" r="4.5"/><path d="M5.5 1C5.5 1 3.5 3 3.5 5.5s2 4.5 2 4.5M5.5 1c0 0 2 2 2 4.5s-2 4.5-2 4.5M1 5.5h9"/></svg>
+          Web
+        </a>
+        <a class="btn-prompt btn-app"
+           href="claude://new?q=Fetch+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md+then+teach+me+about+this+learn-topic-having-teacher-track-learning-progress+skill+itself+%E2%80%94+see+also+https%3A%2F%2Fnew-work-skills.dev%2Fskills%2Flearn-topic-having-teacher-track-learning-progress%2FSKILL.md">
           <svg width="11" height="11" viewBox="0 0 11 11" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="2.5" y="1" width="6" height="9" rx="1.2"/><line x1="5.5" y1="8.5" x2="5.5" y2="8.5" stroke-linecap="round" stroke-width="2"/></svg>
           App
         </a>
