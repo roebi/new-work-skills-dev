@@ -17,7 +17,6 @@ metadata:
   language: en
   hosted-at: https://new-work-skills.dev/skills/learn-topic-having-teacher-track-learning-progress/SKILL.md
   source-newest: https://github.com/roebi/agent-skills/tree/main/skills/learn-topic-having-teacher-track-learning-progress
-  source-pinned: https://github.com/roebi/agent-skills/tree/a53ba4d0495ad9b3294b09dbea4254ce3024a0aa/skills/learn-topic-having-teacher-track-learning-progress
 ---
 
 # Learn Topic — Teacher with Progress Tracking
@@ -114,7 +113,16 @@ When the learner types `learned`:
    - Levels completed and mastered
    - Key strengths observed
    - Suggested next steps
-2. Tell the learner:
+2. Ask the learner:
+   > "Would you like a personal learning summary to keep? (yes / no)"
+3. If **no** → proceed to step 5.
+4. If **yes**:
+   - **Preferred:** create the full `<topic>-learning-process.md`
+     as a downloadable Markdown file.
+   - **Fallback** (agent cannot create downloadable files) →
+     render the full `<topic>-learning-process.md` content
+     as a Markdown code block (` ```markdown ... ``` `).
+5. Tell the learner:
    > "Great session! Your progress has been saved to `<topic>-learning-process.md`.
    > Come back any time to continue. Keep learning! 🎓"
 
